@@ -1,219 +1,721 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vasuki Balasubramanian | Data Analyst</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary-color: #00BFA6;
-      --accent-color: #4F46E5;
-      --text-color: #1F2937;
-      --bg-color: #F9FAFB;
-      --section-bg: #E0F7FA;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vasuki Balasubramanian | Business & Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0B0F1A;
+  --surface: #131829;
+  --card: #1A2035;
+  --card-hover: #212942;
+  --accent: #4F8CFF;
+  --accent2: #7C5CFC;
+  --accent3: #38BDF8;
+  --text: #E2E8F0;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+  --border: #1E293B;
+  --gold: #F59E0B;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-    }
+html { scroll-behavior: smooth; }
 
-    header {
-      background-color: var(--primary-color);
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-    }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-    header h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-    }
+/* NOISE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
 
-    header p {
-      font-size: 1.3em;
-      font-weight: 500;
-    }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-    section {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(11,15,26,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+nav .container {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 24px;
+}
+nav .logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700; color: var(--accent);
+  letter-spacing: 0.5px;
+}
+nav .links { display: flex; gap: 28px; }
+nav .links a {
+  color: var(--text-muted); text-decoration: none; font-size: 0.85rem;
+  font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
+  transition: color 0.3s;
+}
+nav .links a:hover { color: var(--accent); }
 
-    h2 {
-      color: var(--primary-color);
-      margin-bottom: 10px;
-      border-bottom: 2px solid var(--accent-color);
-      padding-bottom: 5px;
-      font-size: 1.8em;
-    }
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 120px 0 80px;
+  position: relative;
+}
+.hero::after {
+  content: '';
+  position: absolute; top: 0; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(79,140,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { max-width: 720px; }
+.hero-label {
+  display: inline-block;
+  padding: 6px 16px; border-radius: 100px;
+  background: rgba(79,140,255,0.1);
+  border: 1px solid rgba(79,140,255,0.2);
+  color: var(--accent); font-size: 0.78rem;
+  font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.4rem; font-weight: 700;
+  line-height: 1.15; margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--text) 0%, var(--accent3) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero p {
+  font-size: 1.1rem; color: var(--text-muted);
+  max-width: 560px; margin-bottom: 36px;
+}
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn {
+  padding: 12px 28px; border-radius: 8px;
+  font-size: 0.9rem; font-weight: 600;
+  text-decoration: none; transition: all 0.3s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary {
+  background: var(--accent); color: #fff;
+  box-shadow: 0 4px 20px rgba(79,140,255,0.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(79,140,255,0.4); }
+.btn-outline {
+  border: 1px solid var(--border); color: var(--text-muted);
+  background: transparent;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-    p {
-      margin-bottom: 15px;
-    }
+/* STATS */
+.stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 24px; padding: 60px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 80px;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem; font-weight: 700; color: var(--accent);
+}
+.stat-label { font-size: 0.82rem; color: var(--text-dim); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
 
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
+/* SECTION */
+section { padding: 80px 0; }
+.section-label {
+  display: inline-block;
+  color: var(--accent); font-size: 0.75rem;
+  font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 700;
+  margin-bottom: 16px;
+}
+.section-desc {
+  color: var(--text-muted); max-width: 600px;
+  margin-bottom: 48px; font-size: 1rem;
+}
 
-    li {
-      background: var(--section-bg);
-      margin-bottom: 10px;
-      padding: 15px;
-      border-left: 5px solid var(--accent-color);
-      border-radius: 6px;
-      transition: transform 0.2s;
-    }
+/* PROJECT CARDS */
+.projects-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.project-card:hover {
+  background: var(--card-hover);
+  border-color: rgba(79,140,255,0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.project-domain {
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 16px; display: inline-block;
+  padding: 4px 12px; border-radius: 6px;
+}
+.domain-banking { background: rgba(79,140,255,0.1); color: var(--accent); }
+.domain-telecom { background: rgba(124,92,252,0.1); color: var(--accent2); }
+.domain-healthcare { background: rgba(56,189,248,0.1); color: var(--accent3); }
+.domain-cross { background: rgba(245,158,11,0.1); color: var(--gold); }
 
-    li:hover {
-      transform: scale(1.01);
-    }
+.project-question {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem; font-weight: 600;
+  margin-bottom: 12px; line-height: 1.4;
+}
+.project-summary {
+  color: var(--text-muted); font-size: 0.9rem;
+  margin-bottom: 20px; line-height: 1.6;
+}
+.project-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.tool-badge {
+  padding: 4px 12px; border-radius: 6px;
+  font-size: 0.75rem; font-weight: 600;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.project-impact {
+  font-size: 0.85rem; color: var(--gold);
+  font-weight: 600;
+}
 
-    a {
-      color: var(--accent-color);
-      text-decoration: none;
-    }
+/* SKILLS */
+.skills-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.skill-group {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  transition: all 0.3s;
+}
+.skill-group:hover { border-color: rgba(79,140,255,0.2); }
+.skill-group-icon {
+  font-size: 1.6rem; margin-bottom: 12px;
+}
+.skill-group-title {
+  font-weight: 700; font-size: 0.95rem;
+  margin-bottom: 12px; color: var(--text);
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tag {
+  padding: 4px 10px; border-radius: 6px;
+  font-size: 0.72rem; font-weight: 500;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-muted);
+}
 
-    a:hover {
-      text-decoration: underline;
-    }
+/* EXPERIENCE TIMELINE */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before {
+  content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px;
+  width: 2px; background: var(--border);
+}
+.timeline-item {
+  position: relative; margin-bottom: 40px;
+  padding: 24px 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+.timeline-item:hover { border-color: rgba(79,140,255,0.2); }
+.timeline-item::before {
+  content: ''; position: absolute;
+  left: -29px; top: 30px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+}
+.timeline-role { font-weight: 700; font-size: 1.05rem; margin-bottom: 4px; }
+.timeline-company { color: var(--accent); font-weight: 600; font-size: 0.9rem; }
+.timeline-meta { color: var(--text-dim); font-size: 0.82rem; margin-bottom: 12px; }
+.timeline-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; }
 
-    footer {
-      text-align: center;
-      padding: 25px;
-      background: var(--primary-color);
-      color: white;
-      margin-top: 60px;
-      font-size: 0.95em;
-    }
+/* CERTIFICATIONS */
+.certs-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.cert-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.cert-card:hover { border-color: rgba(79,140,255,0.2); }
+.cert-icon { font-size: 2rem; margin-bottom: 10px; }
+.cert-name { font-weight: 600; font-size: 0.85rem; margin-bottom: 4px; }
+.cert-org { color: var(--text-dim); font-size: 0.75rem; }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2em;
-      }
+/* CONTACT */
+.contact-section {
+  text-align: center;
+  padding: 100px 0;
+}
+.contact-links { display: flex; justify-content: center; gap: 20px; margin-top: 36px; flex-wrap: wrap; }
+.contact-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 32px;
+  text-decoration: none; color: var(--text);
+  transition: all 0.3s;
+  display: flex; align-items: center; gap: 12px;
+}
+.contact-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.contact-card-icon { font-size: 1.4rem; }
+.contact-card-label { font-size: 0.8rem; color: var(--text-dim); }
+.contact-card-value { font-weight: 600; font-size: 0.9rem; }
 
-      header p {
-        font-size: 1em;
-      }
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0; text-align: center;
+  color: var(--text-dim); font-size: 0.8rem;
+}
 
-      section {
-        margin: 20px 15px;
-      }
-    }
-  </style>
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate { animation: fadeUp 0.7s ease-out forwards; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.2rem; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .certs-grid { grid-template-columns: 1fr; }
+  nav .links { display: none; }
+  .contact-links { flex-direction: column; align-items: center; }
+}
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Vasuki Balasubramanian</h1>
-    <p>Data Analyst | Healthcare & Finance | SQL | Power BI | Python</p>
-  </header>
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="logo">VB</div>
+    <div class="links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
-  <section>
-    <h2>About Me</h2>
-    <p>
-      I'm a results-driven Data Analyst with 9+ years of experience in healthcare analytics, financial reporting, and ETL development. I specialize in translating data into insights using SQL, Power BI, Python, and cloud platforms. With deep expertise in HIPAA compliance, data visualization, and predictive modeling, I deliver business value through data.
-    </p>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-label animate">Business & Data Analyst</div>
+      <h1 class="animate delay-1">Vasuki<br>Balasubramanian</h1>
+      <p class="animate delay-2">I bridge business and data. 8+ years gathering requirements, mapping processes, building dashboards, and writing SQL to turn complex business problems into scalable analytical solutions across banking, telecom, and healthcare.</p>
+      <div class="hero-btns animate delay-3">
+        <a href="mailto:vasukib31@gmail.com" class="btn btn-primary">Get in Touch</a>
+        <a href="https://www.linkedin.com/in/vasuki-balasubramanian31/" target="_blank" class="btn btn-outline">LinkedIn</a>
+        <a href="#projects" class="btn btn-outline">View Projects</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section>
-    <h2>Key Skills</h2>
-    <p><strong>Data & BI:</strong> SQL, Power BI, Tableau, Excel, QuickSight</p>
-    <p><strong>ETL & Big Data:</strong> SSIS, Informatica, Snowflake, Hadoop, Kafka</p>
-    <p><strong>Programming:</strong> Python, Java, PyTorch, scikit-learn</p>
-    <p><strong>Cloud:</strong> AWS, Azure, GCP (BigQuery)</p>
-    <p><strong>Other Tools:</strong> JIRA, Confluence, Git, ServiceNow</p>
-  </section>
+<!-- STATS -->
+<div class="container">
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">8+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">60+</div>
+      <div class="stat-label">BRDs & Specs Delivered</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Dashboards Built</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10M+</div>
+      <div class="stat-label">Records Analyzed</div>
+    </div>
+  </div>
+</div>
 
-  <section>
-    <h2>Professional Experience</h2>
-    <ul>
-      <li>
-        <strong>Northern Trust Bank (Jan 2023 – Present)</strong><br>
-        •	Analyzed large-scale customer, payment, subscription, and financial datasets using SQL, Python, BigQuery, and GCP-based storage systems to support migrations, billing validation, and end-to-end data continuity.
-•	Led UAT cycles for data pipelines, analytical datasets, BI dashboards, performing KPI verification, business rule validation, cross-system reconciliation, and ensuring stakeholder sign-off before production deployment.
-•	Performed loan pool validation and data quality checks for mortgage securitization, ensuring accuracy of LTV, DTI, credit score, occupancy, and loan performance data.
-•	Used JIRA to track issues, document defects, and coordinate with teams to resolve data quality gaps in mortgage portfolios and securitization datasets. 
-•	Designed and developed BI dashboards in Power BI, and Looker, performing rigorous BI QA and building governed LookML models of views, explores, joins, measures for standardized enterprise reporting.
-•	Engineered scalable ELT workflows using Dataform, dbt, PySpark, and SQL, optimizing transformation logic, improving data reliability, and reducing latency through structured testing and dependency management.
-•	Built and optimized dimensional data models in GCP Big Query using partitioning, clustering, performance tuning, and cost optimization techniques to enable efficient KPI reporting and analytical queries.
-•	Conducted advanced exploratory data analysis and delivered insights that identified business trends, operational inefficiencies, financial risks, and revenue leakage, enabling data-driven decision-making.
-•	Developed automated data ingestion, validation, and enrichment pipelines using Python, SQL, REST APIs, and analytics automation tools to reduce manual processes and improve operational throughput.
-•	Applied machine learning techniques (supervised + unsupervised learning) for customer behavior analysis, anomaly detection, transaction prediction, and financial risk modeling, improving analytical accuracy and business insights.
-      </li>
-      <li>
-        <strong>Amdocs, Hyderabad (Jan 2019 – Sep 2022)</strong><br>
-        •	Collected, analyzed, and modeled large-scale telecom datasets including subscriber usage, CDRs, and billing data using SQL and Python to deliver insights for network optimization, churn reduction, and revenue growth.
-•	Collected, analyzed, and modeled large-scale telecom CDR dataset using SQL, Python, and Alteryx workflows to deliver insights for network optimization, churn reduction, and revenue growth.
-•	Collected, analyzed, and modeled large-scale telecom datasets (CDRs, usage, billing) using SQL and Python to deliver insights for network optimization, churn reduction, and revenue growth.
-•	Designed, documented, and optimized IVR call flows, improving customer self-service journeys and reducing call handling time through data-backed decision paths.
-•	Built and deployed AI/ML-driven anomaly detection models using telemetry, logs, and network KPIs, enabling proactive issue identification and reducing manual troubleshooting efforts.
-•	Developed churn prediction and customer segmentation models of Logistic Regression, Random Forest and K-means improving retention strategies and targeted customer engagement.
-•	Designed and automated ETL pipelines using SSIS and AWS Glue to ingest BSS/CRM data into cloud data warehouses supporting analytics and ML workflows.
-•	Built cloud-native Tableau and Power BI dashboards integrating AWS data sources to track KPIs including ARPU, churn, network performance, and traffic anomalies.
-•	Designed ML-ready feature engineering pipelines transforming CDRs, usage patterns, and billing indicators into high-quality model inputs, improving model accuracy.
-•	Implemented time-series forecasting models like ARIMA, Prophet to predict network traffic load, capacity utilization, and outage patterns for operational planning.
-•	Authored optimized SQL queries, Python validation scripts, and reconciliation routines ensuring high data quality, accuracy, and regulatory reporting compliance.
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-desc">Each project starts with a business question and ends with a measurable outcome. Click any card to explore the full case study.</p>
 
-      </li>
-      <li>
-        <strong>Anthena Healthcare, Chennai (Jun 2016 – Dec 2018)</strong><br>
-        •	Designed and automated ETL pipelines using Snowflake, Azure Data Factory, and Synapse Analytics to load EHR and claim data into centralized data warehouses and support enterprise reporting.
-•	Built and maintained Tableau dashboards to monitor clinical KPIs including readmission rates, no-shows, care gaps, treatment outcomes, and patient satisfaction, supporting operational and clinical decision-making.
-•	Configured Collibra DGC and CDQ workflows to enforce metadata governance, data lineage, and quality validation, ensuring regulatory compliance across healthcare datasets.
-•	Developed advanced SQL queries for trend analysis, root-cause investigations, and data transformations, improving reporting accuracy, data quality, and analytic performance.
-•	Designed relational and dimensional data models including star and snowflake schemas, implemented SCDs, and supported both OLTP and OLAP systems with optimized logical and physical schema designs.
-•	Built predictive models in Python to forecast patient no-shows, ER utilization, chronic disease risk, and cost drivers, enabling proactive care management and population health strategies.
-•	Conducted HPLC method development, calibration, and validation, ensuring accurate measurement of complex samples and compliance with analytical standards.
-•	Collaborated with clinical, engineering, and compliance teams in Agile environments using JIRA, delivering scalable BI solutions, automated quality measure reporting (HEDIS, MACRA, MIPS), and training stakeholders on self-service analytics tools.
-•	Integrated and validated healthcare interoperability data standards including FHIR, HL7 v2, CCDA, EDI 837/835 claims, and EDI 834/270/271 eligibility transactions, enabling accurate mapping of encounter-level and longitudinal patient records across payer and provider ecosystems.
-•	Built HIPAA-compliant data architectures with RBAC, audit trails, encryption, and PHI governance, while applying clinical and billing code systems such as ICD-10, CPT/HCPCS, LOINC, SNOMED, NDC, and HCC models to enhance data quality, ML readiness, and regulatory reporting accuracy.
-      </li>
-    </ul>
-  </section>
+    <div class="projects-grid">
 
-  <section>
-    <h2>Certifications</h2>
-    <p> IBM DataStage 2025 – Data Integration &amp; ETL </p>
-    <p> Microsoft Certified: Power Platform Fundamentals (PL900) </p>
-    <p> PL-300: Microsoft Power BI platform  (In Progress)</p>
-  </section>
+      <div class="project-card">
+        <div class="project-domain domain-banking">Banking | Business Analysis</div>
+        <div class="project-question">How do we modernize payment processing with zero gaps between requirements and delivery?</div>
+        <p class="project-summary">Led requirements elicitation with Treasury, Operations, and Compliance stakeholders through JAD workshops. Produced 60+ BRDs, FRDs, user stories, and RTMs. Mapped current-state to future-state processes, achieving 45% process improvement.</p>
+        <div class="project-tools">
+          <span class="tool-badge">BRD/FRD</span>
+          <span class="tool-badge">User Stories</span>
+          <span class="tool-badge">Visio</span>
+          <span class="tool-badge">JIRA</span>
+          <span class="tool-badge">UAT</span>
+        </div>
+        <div class="project-impact">Result: 45% process improvement, 30% faster delivery</div>
+      </div>
 
-   <section>
-    <h2>Independent Projects:</h2>
-    <p>
-       Telecom Customer Churn & Performance – Jan 2026
-•	Built and prepared analytics-ready telecom datasets using SQL for customer segmentation, churn analysis, and campaign performance insights.
-•	Applied machine learning techniques (logistic regression–based churn modeling) and evaluated model performance using ROC curves and AUC analysis to identify high-risk customers and key churn drivers.
-•	Designed Power BI dashboards to visualize churn trends, risk segments, and KPIs, translating analytical and ML-driven insights into actionable retention strategies.
-•	Performed feature evaluation and threshold tuning on churn models to balance precision and recall, ensuring churn risk scores were actionable for business and marketing teams rather than just statistically accurate.
-•	Validated model outputs through data quality checks, back-testing, and stakeholder review, ensuring churn insights were trustworthy, explainable, and aligned with real-world customer behavior.
-    </p>
-  </section>
-  <section>
-    <h2>Contact</h2>
-    <p>📧 Email: <a href="mailto:vasukib31@gmail.com">vasukib31@gmail.com</a></p>
-    <p>📞 Phone: +1 (571) 538-6418</p>
-    <p>🔗 LinkedIn: <a href="https://www.linkedin.com/in/vasuki-balasubramanian31/">linkedin.com/in/vasuki-balasubramanian31</a></p>
-  </section>
+      <div class="project-card">
+        <div class="project-domain domain-banking">Banking | Data Analysis</div>
+        <div class="project-question">What drives ACH payment failures and how can we reduce them?</div>
+        <p class="project-summary">Analyzed 10M+ ACH transactions to identify exception patterns, settlement delays, and processing bottlenecks. Built Power BI dashboards tracking payment lifecycle KPIs for Treasury leadership.</p>
+        <div class="project-tools">
+          <span class="tool-badge">SQL</span>
+          <span class="tool-badge">Power BI</span>
+          <span class="tool-badge">AWS QuickSight</span>
+          <span class="tool-badge">Python</span>
+        </div>
+        <div class="project-impact">Result: 30% improvement in settlement accuracy</div>
+      </div>
 
-  <footer>
-    &copy; 2025 Vasuki Balasubramanian — All rights reserved.
-  </footer>
+      <div class="project-card">
+        <div class="project-domain domain-banking">Banking | AI/ML</div>
+        <div class="project-question">Can we detect financial anomalies before they impact reporting?</div>
+        <p class="project-summary">Implemented Isolation Forest anomaly detection on financial transaction datasets. Built automated Python pipeline that improved prompt accuracy from 70% to 92% and flagged GL mismatches in real time.</p>
+        <div class="project-tools">
+          <span class="tool-badge">Python</span>
+          <span class="tool-badge">Pandas</span>
+          <span class="tool-badge">Scikit-learn</span>
+          <span class="tool-badge">SQL</span>
+        </div>
+        <div class="project-impact">Result: 70% to 92% anomaly detection accuracy</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-domain domain-telecom">Telecom | Business Analysis</div>
+        <div class="project-question">How do we standardize billing requirements across CRM and product teams?</div>
+        <p class="project-summary">Facilitated JAD workshops with Product, CRM, and Operations stakeholders. Documented BRDs, FRDs, and Quality of Service requirements for billing platform modernization. Created process flow diagrams and conducted UAT.</p>
+        <div class="project-tools">
+          <span class="tool-badge">BRD/FRD</span>
+          <span class="tool-badge">Process Flows</span>
+          <span class="tool-badge">JIRA</span>
+          <span class="tool-badge">Visio</span>
+          <span class="tool-badge">UAT</span>
+        </div>
+        <div class="project-impact">Result: 30% reduction in billing errors through process standardization</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-domain domain-telecom">Telecom | Data Analysis</div>
+        <div class="project-question">Which subscribers are most likely to churn, and what can we do about it?</div>
+        <p class="project-summary">Built churn prediction models using logistic regression on 5M+ subscriber records. Segmented customers by ARPU, usage patterns, and risk scores. Created Tableau dashboards for retention teams.</p>
+        <div class="project-tools">
+          <span class="tool-badge">SQL</span>
+          <span class="tool-badge">Python</span>
+          <span class="tool-badge">Tableau</span>
+          <span class="tool-badge">GCP BigQuery</span>
+        </div>
+        <div class="project-impact">Result: Identified 15% high-risk segments for targeted retention</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-domain domain-healthcare">Healthcare | Data Analysis</div>
+        <div class="project-question">Why are claims denial rates rising and how do we fix them?</div>
+        <p class="project-summary">Queried healthcare claims and member datasets using SQL and GCP BigQuery. Built Power BI dashboards tracking claims lifecycle, reimbursement KPIs, and payer performance to identify root causes.</p>
+        <div class="project-tools">
+          <span class="tool-badge">SQL</span>
+          <span class="tool-badge">Power BI</span>
+          <span class="tool-badge">GCP BigQuery</span>
+          <span class="tool-badge">Excel</span>
+        </div>
+        <div class="project-impact">Result: 20% improvement in claims reporting accuracy</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-domain domain-healthcare">Healthcare | Business Analysis</div>
+        <div class="project-question">How do we translate clinical workflows into system requirements?</div>
+        <p class="project-summary">Gathered requirements from clinical operations and revenue cycle stakeholders. Documented business requirements, data definitions, and process flows for healthcare analytics solutions. Supported UAT and validated claims processing logic.</p>
+        <div class="project-tools">
+          <span class="tool-badge">Requirements Gathering</span>
+          <span class="tool-badge">Process Mapping</span>
+          <span class="tool-badge">UAT</span>
+          <span class="tool-badge">Stakeholder Mgmt</span>
+        </div>
+        <div class="project-impact">Result: Consistent metrics and improved operational reporting</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-domain domain-cross">Independent | ML Project</div>
+        <div class="project-question">Can we predict telecom churn using machine learning and validate it?</div>
+        <p class="project-summary">End-to-end ML project: data prep in SQL, logistic regression in Python, ROC/AUC validation, feature evaluation and threshold tuning. Built Power BI dashboards visualizing churn trends and risk segments.</p>
+        <div class="project-tools">
+          <span class="tool-badge">Python</span>
+          <span class="tool-badge">SQL</span>
+          <span class="tool-badge">Power BI</span>
+          <span class="tool-badge">GitHub</span>
+        </div>
+        <div class="project-impact">Result: Actionable churn risk scores for business teams</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Expertise</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-desc">Tools and technologies I use daily to deliver data-driven solutions.</p>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-icon">&#128203;</div>
+        <div class="skill-group-title">Business Analysis</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Requirements Elicitation</span>
+          <span class="skill-tag">BRD / FRD</span>
+          <span class="skill-tag">User Stories</span>
+          <span class="skill-tag">Acceptance Criteria</span>
+          <span class="skill-tag">RTM</span>
+          <span class="skill-tag">Gap Analysis</span>
+          <span class="skill-tag">JAD Workshops</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon">&#128260;</div>
+        <div class="skill-group-title">Process & Stakeholders</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Process Mapping (Visio)</span>
+          <span class="skill-tag">Swim Lane Diagrams</span>
+          <span class="skill-tag">Current/Future State</span>
+          <span class="skill-tag">Stakeholder Management</span>
+          <span class="skill-tag">UAT</span>
+          <span class="skill-tag">SDLC</span>
+          <span class="skill-tag">Agile Scrum</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon">&#128736;</div>
+        <div class="skill-group-title">BA & PM Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">JIRA</span>
+          <span class="skill-tag">Confluence</span>
+          <span class="skill-tag">Azure DevOps</span>
+          <span class="skill-tag">SharePoint</span>
+          <span class="skill-tag">Visio</span>
+          <span class="skill-tag">MS Office 365</span>
+          <span class="skill-tag">Google Workspace</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon">&#128202;</div>
+        <div class="skill-group-title">Data & BI</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL (Advanced)</span>
+          <span class="skill-tag">Power BI (DAX, Power Query)</span>
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">AWS QuickSight</span>
+          <span class="skill-tag">Looker Studio</span>
+          <span class="skill-tag">Advanced Excel</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon">&#9729;&#65039;</div>
+        <div class="skill-group-title">Cloud & Databases</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS (Redshift, S3, Glue, Athena)</span>
+          <span class="skill-tag">GCP BigQuery</span>
+          <span class="skill-tag">Snowflake</span>
+          <span class="skill-tag">Azure SQL</span>
+          <span class="skill-tag">Oracle</span>
+          <span class="skill-tag">SQL Server</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon">&#128187;</div>
+        <div class="skill-group-title">Programming & ETL</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python (Pandas, NumPy)</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">Alteryx</span>
+          <span class="skill-tag">IBM DataStage</span>
+          <span class="skill-tag">ETL/ELT Pipelines</span>
+          <span class="skill-tag">Postman (API)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Professional Experience</h2>
+    <p class="section-desc">8+ years of turning data into decisions across three industries.</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-role">Business Data Analyst</div>
+        <div class="timeline-company">Northern Trust Bank</div>
+        <div class="timeline-meta">May 2023 &ndash; Present &bull; Chicago, IL (Remote)</div>
+        <div class="timeline-desc">
+          <strong>BA:</strong> Led JAD workshops with Treasury, Finance, and Operations stakeholders. Produced 60+ BRDs, FRDs, user stories, RTMs, and process flow diagrams. Mapped current-state to future-state workflows, achieving 45% process improvement.<br><br>
+          <strong>DA:</strong> Analyzed 10M+ ACH transactions using SQL and Python. Built 15+ Power BI and AWS QuickSight dashboards. Automated data validation pipelines. Improved settlement accuracy by 30%.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-role">Business Analyst / Data Analyst</div>
+        <div class="timeline-company">Amdocs</div>
+        <div class="timeline-meta">Jan 2019 &ndash; Sep 2022 &bull; Hyderabad, India</div>
+        <div class="timeline-desc">
+          <strong>BA:</strong> Facilitated requirement sessions with Product, CRM, and Operations teams. Delivered BRDs, FRDs, and QoS requirements for billing platform modernization. Coordinated UAT and defect triage.<br><br>
+          <strong>DA:</strong> Built churn prediction models on 5M+ subscriber records. Designed Tableau dashboards for ARPU, revenue trends, and anomaly detection. Used GCP BigQuery for large-scale analysis. Reduced billing errors by 25%.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-role">Junior Data Analyst / Business Analyst</div>
+        <div class="timeline-company">Athena Healthcare</div>
+        <div class="timeline-meta">Jun 2017 &ndash; Dec 2018 &bull; Chennai, India</div>
+        <div class="timeline-desc">
+          <strong>BA:</strong> Gathered requirements from clinical operations and revenue cycle stakeholders. Documented business requirements, data definitions, and process flows. Supported UAT for healthcare applications.<br><br>
+          <strong>DA:</strong> Built Power BI dashboards for claims performance and payer KPIs. Queried claims data using SQL and GCP BigQuery. Improved reporting accuracy by 20%.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certifications</h2>
+    <p class="section-desc">Continuous learning and professional development.</p>
+
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">&#9889;</div>
+        <div class="cert-name">IBM DataStage 2025</div>
+        <div class="cert-org">Data Integration & ETL</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">&#127992;</div>
+        <div class="cert-name">Power Platform Fundamentals</div>
+        <div class="cert-org">Microsoft PL-900</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">&#129302;</div>
+        <div class="cert-name">AI Fundamentals</div>
+        <div class="cert-org">DataCamp &bull; March 2026</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">&#128200;</div>
+        <div class="cert-name">Power BI Data Analyst</div>
+        <div class="cert-org">Microsoft PL-300 &bull; In Progress</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">&#127891;</div>
+        <div class="cert-name">MS Computer Science</div>
+        <div class="cert-org">Hood College &bull; Data Science</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">&#128218;</div>
+        <div class="cert-name">BE Computer Science</div>
+        <div class="cert-org">Anna University</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="section-label">Let's Connect</div>
+    <h2 class="section-title">Ready to work together?</h2>
+    <p class="section-desc" style="margin: 0 auto 20px; text-align: center;">I'm actively looking for Senior Data Analyst and Business Analyst opportunities. Let's talk.</p>
+
+    <div class="contact-links">
+      <a href="mailto:vasukib31@gmail.com" class="contact-card">
+        <div class="contact-card-icon">&#9993;</div>
+        <div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value">vasukib31@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+15715386418" class="contact-card">
+        <div class="contact-card-icon">&#128222;</div>
+        <div>
+          <div class="contact-card-label">Phone</div>
+          <div class="contact-card-value">+1 (571) 538-6418</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/vasuki-balasubramanian31/" target="_blank" class="contact-card">
+        <div class="contact-card-icon">&#128279;</div>
+        <div>
+          <div class="contact-card-label">LinkedIn</div>
+          <div class="contact-card-value">vasuki-balasubramanian31</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    &copy; 2026 Vasuki Balasubramanian. All rights reserved.
+  </div>
+</footer>
 
 </body>
 </html>
